@@ -1,6 +1,6 @@
 # K2ES - Kinesis to Elasticsearch
 
-Use Lambda to move Kinesis data to elastic search
+Use Lambda to move Kinesis data to elastic search. Use in conjunction with [Loghose](https://github.com/xtraclabs/loghose)
 
 This code was taken from https://github.com/awslabs/amazon-elasticsearch-lambda-samples
 

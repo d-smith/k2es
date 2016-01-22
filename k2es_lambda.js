@@ -22,11 +22,37 @@ var creds = new AWS.EnvironmentCredentials('AWS');
 
 /* Lambda "main": Execution begins here */
 exports.handler = function(event, context) {
-    console.log(JSON.stringify(event, null, '  '));
+    //console.log(JSON.stringify(event, null, '  '));
     event.Records.forEach(function(record) {
-        var jsonDoc = new Buffer(record.kinesis.data, 'base64');
-        postToES(jsonDoc.toString(), context);
+
+        var payload = new Buffer(record.kinesis.data, 'base64').toString('ascii');
+        //console.log('Decoded payload:', payload);
+
+        if(couldBeJSON(payload)) {
+          console.log('jsonPayload assumed');
+
+          var jsonPart = stripPrefixFromJSON(payload);
+          //console.log('jsonPart: ' + jsonPart);
+
+          postToES(jsonPart, context);
+        } else {
+          console.log('Not json - skip record');
+        }
     });
+
+    context.succeed();
+}
+
+function couldBeJSON(s) {
+  return s.indexOf("{") >= 0
+}
+
+function stripPrefixFromJSON(s) {
+  idx = s.indexOf('{');
+  if(idx > 0)
+    return s.substring(idx);
+  else
+    return s;
 }
 
 

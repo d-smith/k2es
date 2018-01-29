@@ -1,6 +1,5 @@
 # K2ES - Kinesis to Elasticsearch
 
-[ ![Codeship Status for xtraclabs/k2es](https://codeship.com/projects/6f55b420-9ad9-0133-32d1-56295786b896/status?branch=master)](https://codeship.com/projects/126606)
 
 Use Lambda to move Kinesis data to elastic search. Use in conjunction with [Loghose](https://github.com/xtraclabs/loghose)
 
@@ -32,7 +31,7 @@ a policy allowing access to the elasticsearch stream.
                 "es:*"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:es:us-east-1:930295567417:domain/xavi1/*"
+            "Resource": "arn:aws:es:us-east-1:nnnnnnn:domain/xavi1/*"
         }
     ]
 }
